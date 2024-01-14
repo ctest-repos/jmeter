@@ -34,6 +34,7 @@ dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         // TODO: support enableMavenLocal
+        mavenLocal()
         mavenCentral()
     }
 }

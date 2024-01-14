@@ -76,6 +76,7 @@ dependencies {
         }
     }
 
+    implementation("edu.illinois:ctest-runner-junit4:1.0-SNAPSHOT")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing")
     implementation("com.fasterxml.jackson.core:jackson-annotations")

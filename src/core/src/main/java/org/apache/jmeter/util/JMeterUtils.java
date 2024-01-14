@@ -57,6 +57,7 @@ import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 
+import edu.illinois.ConfigTracker;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.jmeter.gui.GuiPackage;
@@ -914,6 +915,7 @@ public class JMeterUtils implements UnitTestManager {
      * @return the value of the JMeter property, or {@code null} if not defined
      */
     public static String getProperty(String propName) {
+        ConfigTracker.markParamAsUsed(propName);
         try {
             return appProperties.getProperty(propName);
         } catch (Exception e) {
@@ -932,6 +934,7 @@ public class JMeterUtils implements UnitTestManager {
      * @return the previous value of the property
      */
     public static Object setProperty(String propName, String propValue) {
+        ConfigTracker.markParamAsSet(propName);
         return appProperties.setProperty(propName, propValue);
     }
 

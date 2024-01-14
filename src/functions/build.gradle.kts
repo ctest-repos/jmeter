@@ -23,6 +23,7 @@ dependencies {
     api(projects.src.components)
     testImplementation(testFixtures(projects.src.core))
 
+    implementation("edu.illinois:ctest-runner-junit5:1.0-SNAPSHOT")
     implementation("org.mozilla:rhino")
     implementation("commons-codec:commons-codec")
     implementation("org.apache.commons:commons-jexl")
@@ -40,4 +41,8 @@ dependencies {
     implementation("oro:oro")
     testImplementation("org.hamcrest:hamcrest-core")
     testImplementation("org.exparity:hamcrest-date")
+}
+
+tasks.test {
+    systemProperty("ctest.config.save", "true")
 }

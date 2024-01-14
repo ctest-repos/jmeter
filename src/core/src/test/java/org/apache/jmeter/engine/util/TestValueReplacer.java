@@ -23,8 +23,8 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.runner.RunWith;
-import edu.illinois.CTestJUnit4Runner2;
+import org.junit.jupiter.api.extension.ExtendWith;
+import edu.illinois.CTestJUnit5Extension;
 import edu.illinois.CTestClass;
 import edu.illinois.CTest;
 import org.apache.jmeter.config.ConfigTestElement;
@@ -40,7 +40,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-@RunWith(CTestJUnit4Runner2.class)
+@ExtendWith(CTestJUnit5Extension.class)
 @CTestClass
 public class TestValueReplacer extends JMeterTestCase {
     private TestPlan variables;

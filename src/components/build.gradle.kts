@@ -42,6 +42,7 @@ dependencies {
     // This is an API-only jar. javax.activation is present in Java 8,
     // however it is not there in Java 9
     compileOnly("javax.activation:javax.activation-api")
+    implementation("edu.illinois:ctest-runner-junit5:1.0-SNAPSHOT")
     implementation("com.github.ben-manes.caffeine:caffeine")
     implementation("io.burt:jmespath-core")
     implementation("io.burt:jmespath-jackson")
@@ -99,5 +100,11 @@ if (!buildParameters.enableJavaFx) {
                 exclude("org/apache/jmeter/visualizers/RenderInBrowser.java")
             }
         }
+    }
+}
+
+tasks.withType<Test> {
+    if (project.hasProperty("ctest.config.save")) {
+        systemProperty("ctest.config.save", project.property("ctest.config.save") as String)
     }
 }

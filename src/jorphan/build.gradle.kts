@@ -24,6 +24,7 @@ dependencies {
     api("org.apiguardian:apiguardian-api")
     api("org.slf4j:slf4j-api")
 
+    implementation("edu.illinois:ctest-runner-junit5:1.0-SNAPSHOT")
     implementation("commons-io:commons-io")
     implementation("org.apache.commons:commons-collections4")
     implementation("org.apache.commons:commons-lang3")
@@ -31,4 +32,10 @@ dependencies {
     implementation("org.apache.commons:commons-text")
 
     testFixturesImplementation("org.junit.jupiter:junit-jupiter")
+}
+
+tasks.withType<Test> {
+    if (project.hasProperty("ctest.config.save")) {
+        systemProperty("ctest.config.save", project.property("ctest.config.save") as String)
+    }
 }

@@ -25,6 +25,7 @@ plugins {
 dependencies {
     implementation(projects.src.jorphan)
     implementation(projects.src.core)
+    implementation("edu.illinois:ctest-runner-junit5:1.0-SNAPSHOT")
 }
 
 tasks.configureEach<Kapt> {
@@ -33,4 +34,10 @@ tasks.configureEach<Kapt> {
     annotationProcessorOptionProviders.add(
         listOf(CommandLineArgumentProvider { listOf("-Averify=false") })
     )
+}
+
+tasks.withType<Test> {
+    if (project.hasProperty("ctest.config.save")) {
+        systemProperty("ctest.config.save", project.property("ctest.config.save") as String)
+    }
 }

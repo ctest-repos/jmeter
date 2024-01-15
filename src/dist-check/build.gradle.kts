@@ -70,6 +70,8 @@ dependencies {
     loggingClasspath("org.apache.logging.log4j:log4j-core")
     loggingClasspath("org.apache.logging.log4j:log4j-1.2-api")
     loggingClasspath("org.apache.logging.log4j:log4j-slf4j-impl")
+
+    implementation("edu.illinois:ctest-runner-junit5:1.0-SNAPSHOT")
 }
 
 val libOpt = copySpec {
@@ -263,5 +265,11 @@ if (props.bool("enableFlaky", default = false)) {
         tasks.named(test) {
             enabled = false
         }
+    }
+}
+
+tasks.withType<Test> {
+    if (project.hasProperty("ctest.config.save")) {
+        systemProperty("ctest.config.save", project.property("ctest.config.save") as String)
     }
 }

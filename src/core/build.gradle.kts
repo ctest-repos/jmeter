@@ -183,3 +183,9 @@ tasks.jar {
         from("$rootDir/xdocs/images/logo.svg")
     }
 }
+
+tasks.withType<Test> {
+    if (project.hasProperty("ctest.config.save")) {
+        systemProperty("ctest.config.save", project.property("ctest.config.save") as String)
+    }
+}

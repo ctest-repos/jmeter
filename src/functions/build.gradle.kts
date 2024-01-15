@@ -43,6 +43,8 @@ dependencies {
     testImplementation("org.exparity:hamcrest-date")
 }
 
-tasks.test {
-    systemProperty("ctest.config.save", "true")
+tasks.withType<Test> {
+    if (project.hasProperty("ctest.config.save")) {
+        systemProperty("ctest.config.save", project.property("ctest.config.save") as String)
+    }
 }

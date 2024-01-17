@@ -188,4 +188,7 @@ tasks.withType<Test> {
     if (project.hasProperty("ctest.config.save")) {
         systemProperty("ctest.config.save", project.property("ctest.config.save") as String)
     }
+    if (project.hasProperty("config.inject.cli")) {
+        systemProperty("config.inject.cli", project.property("config.inject.cli") as String)
+    }
 }

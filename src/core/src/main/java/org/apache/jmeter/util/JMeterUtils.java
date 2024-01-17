@@ -125,7 +125,7 @@ public class JMeterUtils implements UnitTestManager {
 
     private static final String ENGLISH_LANGUAGE = Locale.ENGLISH.getLanguage();
 
-    private static volatile Properties appProperties;
+    private static volatile CtestRunnerProperties appProperties;
 
     private static final CopyOnWriteArrayList<LocaleChangeListener> localeChangeListeners =
             new CopyOnWriteArrayList<>();
@@ -215,7 +215,8 @@ public class JMeterUtils implements UnitTestManager {
      * @param file Name of the file from which the JMeter properties should be loaded
      */
     public static void loadJMeterProperties(String file) {
-        Properties p = new Properties(System.getProperties());
+        CtestRunnerProperties p = new CtestRunnerProperties();
+        p.putAll(System.getProperties());
         try (InputStream is = new FileInputStream(new File(file))) {
             p.load(is);
         } catch (IOException e) {
@@ -915,7 +916,6 @@ public class JMeterUtils implements UnitTestManager {
      * @return the value of the JMeter property, or {@code null} if not defined
      */
     public static String getProperty(String propName) {
-        ConfigTracker.markParamAsUsed(propName);
         try {
             return appProperties.getProperty(propName);
         } catch (Exception e) {
@@ -934,7 +934,6 @@ public class JMeterUtils implements UnitTestManager {
      * @return the previous value of the property
      */
     public static Object setProperty(String propName, String propValue) {
-        ConfigTracker.markParamAsSet(propName);
         return appProperties.setProperty(propName, propValue);
     }
 

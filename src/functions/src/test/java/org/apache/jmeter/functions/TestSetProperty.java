@@ -22,10 +22,6 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import edu.illinois.CTestJUnit5Extension;
-import edu.illinois.CTestClass;
-import edu.illinois.CTest;
 import org.apache.jmeter.engine.util.CompoundVariable;
 import org.apache.jmeter.junit.JMeterTestCase;
 import org.apache.jmeter.samplers.SampleResult;
@@ -38,8 +34,6 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-@ExtendWith(CTestJUnit5Extension.class)
-@CTestClass
 public class TestSetProperty extends JMeterTestCase implements JMeterSerialTest {
 
     private AbstractFunction function;
@@ -61,12 +55,12 @@ public class TestSetProperty extends JMeterTestCase implements JMeterSerialTest 
         params = new ArrayList<>();
     }
 
-    @CTest
+    @Test
     public void testParameterCount() throws Exception {
         checkInvalidParameterCounts(function, 2, 3);
     }
 
-    @CTest
+    @Test
     public void testSetPropertyNoReturn() throws Exception {
         params.add(new CompoundVariable("prop1"));
         params.add(new CompoundVariable("value1"));
@@ -76,7 +70,7 @@ public class TestSetProperty extends JMeterTestCase implements JMeterSerialTest 
         assertEquals("", returnValue);
     }
 
-    @CTest
+    @Test
     public void testSetPropertyWithReturn() throws Exception {
         params.add(new CompoundVariable("prop1"));
         params.add(new CompoundVariable("value1"));

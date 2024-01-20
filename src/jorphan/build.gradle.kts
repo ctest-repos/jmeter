@@ -41,4 +41,13 @@ tasks.withType<Test> {
     if (project.hasProperty("config.inject.cli")) {
         systemProperty("config.inject.cli", project.property("config.inject.cli") as String)
     }
+    if (project.hasProperty("ctest.mapping.dir")) {
+        systemProperty("ctest.mapping.dir", project.property("ctest.mapping.dir") as String)
+    }
+}
+
+tasks.withType<Test> {
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
 }

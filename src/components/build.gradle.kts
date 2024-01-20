@@ -101,3 +101,9 @@ if (!buildParameters.enableJavaFx) {
         }
     }
 }
+
+tasks.withType<Test> {
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}

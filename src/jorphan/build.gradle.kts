@@ -32,3 +32,9 @@ dependencies {
 
     testFixturesImplementation("org.junit.jupiter:junit-jupiter")
 }
+
+tasks.withType<Test> {
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}

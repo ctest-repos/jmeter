@@ -34,3 +34,9 @@ tasks.configureEach<Kapt> {
         listOf(CommandLineArgumentProvider { listOf("-Averify=false") })
     )
 }
+
+tasks.withType<Test> {
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}

@@ -181,3 +181,9 @@ tasks.jar {
         from("$rootDir/xdocs/images/logo.svg")
     }
 }
+
+tasks.withType<Test> {
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}

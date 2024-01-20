@@ -265,3 +265,9 @@ if (props.bool("enableFlaky", default = false)) {
         }
     }
 }
+
+tasks.withType<Test> {
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}

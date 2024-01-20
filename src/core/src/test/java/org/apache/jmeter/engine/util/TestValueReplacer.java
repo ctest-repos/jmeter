@@ -23,10 +23,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import edu.illinois.CTestJUnit5Extension;
-import edu.illinois.CTestClass;
-import edu.illinois.CTest;
 import org.apache.jmeter.config.ConfigTestElement;
 import org.apache.jmeter.junit.JMeterTestCase;
 import org.apache.jmeter.testelement.TestElement;
@@ -40,8 +36,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-@ExtendWith(CTestJUnit5Extension.class)
-@CTestClass
 public class TestValueReplacer extends JMeterTestCase {
     private TestPlan variables;
 
@@ -61,7 +55,7 @@ public class TestValueReplacer extends JMeterTestCase {
         JMeterContextService.getContext().setSamplingStarted(true);
     }
 
-    @CTest
+    @Test
     public void testReverseReplacement() throws Exception {
         ValueReplacer replacer = new ValueReplacer(variables);
         assertTrue(variables.getUserDefinedVariables().containsKey("server"));
@@ -80,7 +74,7 @@ public class TestValueReplacer extends JMeterTestCase {
         assertEquals("${password}", args.get(1).getStringValue());
     }
 
-    @CTest
+    @Test
     public void testReverseReplacementXml() throws Exception {
         ValueReplacer replacer = new ValueReplacer(variables);
         assertTrue(variables.getUserDefinedVariables().containsKey("bounded_regex"));
@@ -100,7 +94,7 @@ public class TestValueReplacer extends JMeterTestCase {
         assertEquals("${bounded_regex}", args.get(0).getStringValue());
     }
 
-    @CTest
+    @Test
     public void testOverlappingMatches() throws Exception {
         TestPlan plan = new TestPlan();
         plan.addParameter("longMatch", "servername");
@@ -113,22 +107,22 @@ public class TestValueReplacer extends JMeterTestCase {
         assertEquals("${${shortMatch}", replacedDomain);
     }
 
-    @CTest
+    @Test
     public void testPartialWordMatchesWithoutParens() throws Exception {
         assertEquals("toto%40005", replaceWord("005", "toto%40005"));
     }
 
-    @CTest
+    @Test
     public void testPartialWordMatchesWithParens() throws Exception {
         assertEquals("toto%40${domainMatcher}", replaceWord("(005)", "toto%40005"));
     }
 
-    @CTest
+    @Test
     public void testCompleteWordMatchesWithoutParens() throws Exception {
         assertEquals("toto@${domainMatcher}", replaceWord("005", "toto@005"));
     }
 
-    @CTest
+    @Test
     public void testCompleteWordMatchesWithParens() throws Exception {
         assertEquals("toto@${domainMatcher}", replaceWord("(005)", "toto@005"));
     }
@@ -143,7 +137,7 @@ public class TestValueReplacer extends JMeterTestCase {
         return element.getPropertyAsString("mail");
     }
 
-    @CTest
+    @Test
     public void testReplace() throws Exception {
         ValueReplacer replacer = new ValueReplacer();
         replacer.setUserDefinedVariables(variables.getUserDefinedVariables());
@@ -154,7 +148,7 @@ public class TestValueReplacer extends JMeterTestCase {
         assertEquals("jakarta.apache.org", element.getPropertyAsString("domain"));
     }
 
-    @CTest
+    @Test
     public void testReplaceStringWithBackslash() throws Exception {
         ValueReplacer replacer = new ValueReplacer();
         replacer.setUserDefinedVariables(variables.getUserDefinedVariables());
@@ -173,7 +167,7 @@ public class TestValueReplacer extends JMeterTestCase {
      *
      * See https://bz.apache.org/bugzilla/show_bug.cgi?id=53534
      */
-    @CTest
+    @Test
     public void testReplaceFunctionWithBackslash() throws Exception {
         ValueReplacer replacer = new ValueReplacer();
         replacer.setUserDefinedVariables(variables.getUserDefinedVariables());

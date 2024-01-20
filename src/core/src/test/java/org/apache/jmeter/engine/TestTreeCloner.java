@@ -21,10 +21,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.jupiter.api.extension.ExtendWith;
-import edu.illinois.CTestJUnit5Extension;
-import edu.illinois.CTestClass;
-import edu.illinois.CTest;
 import org.apache.jmeter.config.Argument;
 import org.apache.jmeter.config.Arguments;
 import org.apache.jmeter.control.GenericController;
@@ -37,11 +33,9 @@ import org.apache.jmeter.testelement.property.PropertyIterator;
 import org.apache.jorphan.collections.ListedHashTree;
 import org.junit.jupiter.api.Test;
 
-@ExtendWith(CTestJUnit5Extension.class)
-@CTestClass
 public class TestTreeCloner extends JMeterTestCase {
 
-    @CTest
+    @Test
     @SuppressWarnings("ReferenceEquality")
     public void testCloning() throws Exception {
         ListedHashTree original = new ListedHashTree();

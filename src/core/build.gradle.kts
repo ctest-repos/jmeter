@@ -168,14 +168,14 @@ plugins.withId("org.jetbrains.kotlin.jvm") {
     }
 }
 
-tasks.withType<Checkstyle>().matching { it.name == "checkstyleMain" }
-    .configureEach {
-        mustRunAfter(versionClass)
-    }
+// tasks.withType<Checkstyle>().matching { it.name == "checkstyleMain" }
+//     .configureEach {
+//         mustRunAfter(versionClass)
+//     }
 
-tasks.withType<AutostyleTask>().configureEach {
-    mustRunAfter(versionClass)
-}
+// tasks.withType<AutostyleTask>().configureEach {
+//     mustRunAfter(versionClass)
+// }
 // </editor-fold>
 
 tasks.jar {
